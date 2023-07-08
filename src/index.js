@@ -76,6 +76,45 @@ document.addEventListener("DOMContentLoaded", function(){
 
         document.getElementById(myramensarr[0].id).click();
 
+        //image:
+        //https://lh3.googleusercontent.com/p/AF1QipMyVvA590Z5Lt5ETrrauv5_6DSHz7BX4T4ItgLh=s680-w680-h510
+        //restaurant: Katsu Ramen
+        //name: Tonkotsu
+        //rating: 6
+        //comment: tastes better than it looks
+        //
+
+        let nwramenform = document.getElementById("new-ramen");
+        nwramenform.addEventListener("submit", function(event){
+            event.preventDefault();
+            console.log("event.target = " + event.target);
+            console.log("event.target[0].value = " + event.target[0].value);//name
+            console.log("event.target[1].value = " + event.target[1].value);//restaurant
+            console.log("event.target[2].value = " + event.target[2].value);//image
+            console.log("event.target[3].value = " + event.target[3].value);//rating
+            console.log("event.target[4].value = " + event.target[4].value);//comment
+            let mynwramenobj = {
+                name: ("" + event.target[0].value),
+                restaurant: ("" + event.target[1].value),
+                image: ("" + event.target[2].value),
+                rating: ("" + event.target[3].value),
+                comment: ("" + event.target[4].value)
+            };
+            document.getElementById("ramen-menu").appendChild(
+                getNewRamenDOMElements(mynwramenobj));
+            addDisplayInfoBoxListener(mynwramenobj);
+            //clear the form
+            let myinputs = nwramenform.getElementsByTagName("input");
+            for (let n = 0; n < myinputs.length; n++)
+            {
+                console.log("myinputs[" + n + "].type = " + myinputs[n].type);
+                if (myinputs[n].type === "submit") continue;
+                else myinputs[n].value = "";
+            }
+            console.log("successfully added the new ramen menu item!");
+            debugger;
+        });
+        console.log("set up the new ramen form!");
         debugger;
     }).catch(function(err){
         console.error("there was an error geting all of the ramens!");
