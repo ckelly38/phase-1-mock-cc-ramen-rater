@@ -2,12 +2,12 @@
 function getNewRamenDOMElements(ramenobj)
 {
     //comment, id, image, name, rating, restaurant
-    console.log("ramenobj.comment = " + ramenobj.comment);
-    console.log("ramenobj.id = " + ramenobj.id);
-    console.log("ramenobj.image = " + ramenobj.image);
-    console.log("ramenobj.name = " + ramenobj.name);
-    console.log("ramenobj.rating = " + ramenobj.rating);
-    console.log("ramenobj.restaurant = " + ramenobj.restaurant);
+    //console.log("ramenobj.comment = " + ramenobj.comment);
+    //console.log("ramenobj.id = " + ramenobj.id);
+    //console.log("ramenobj.image = " + ramenobj.image);
+    //console.log("ramenobj.name = " + ramenobj.name);
+    //console.log("ramenobj.rating = " + ramenobj.rating);
+    //console.log("ramenobj.restaurant = " + ramenobj.restaurant);
     let myimg = document.createElement("img");
     myimg.id = ramenobj.id;
     myimg.src = ramenobj.image;
@@ -41,24 +41,24 @@ let mydisplayid = -1;
 function addDisplayInfoBoxListener(ramenobj)
 {
     //comment, id, image, name, rating, restaurant
-    console.log("ramenobj.comment = " + ramenobj.comment);
-    console.log("ramenobj.id = " + ramenobj.id);
-    console.log("ramenobj.image = " + ramenobj.image);
-    console.log("ramenobj.name = " + ramenobj.name);
-    console.log("ramenobj.rating = " + ramenobj.rating);
-    console.log("ramenobj.restaurant = " + ramenobj.restaurant);
+    //console.log("ramenobj.comment = " + ramenobj.comment);
+    //console.log("ramenobj.id = " + ramenobj.id);
+    //console.log("ramenobj.image = " + ramenobj.image);
+    //console.log("ramenobj.name = " + ramenobj.name);
+    //console.log("ramenobj.rating = " + ramenobj.rating);
+    //console.log("ramenobj.restaurant = " + ramenobj.restaurant);
     let myimgbtn = document.getElementById(ramenobj.id);
     myimgbtn.addEventListener("click", function(event){
-        console.log("clicked the image!");
-        console.log("this.id = " + this.id);
-        console.log("this.comment = " + this.comment);
+        //console.log("clicked the image!");
+        //console.log("this.id = " + this.id);
+        //console.log("this.comment = " + this.comment);
         //console.log("this.id = " + this.id);
         mydisplayid = this.id;
-        console.log("this.image = " + this.image);
-        console.log("this.name = " + this.name);
-        console.log("this.rating = " + this.rating);
-        console.log("this.restaurant = " + this.restaurant);
-        console.log("NEW mydisplayid = " + mydisplayid);
+        //console.log("this.image = " + this.image);
+        //console.log("this.name = " + this.name);
+        //console.log("this.rating = " + this.rating);
+        //console.log("this.restaurant = " + this.restaurant);
+        //console.log("NEW mydisplayid = " + mydisplayid);
         let myimg = document.getElementById("ramen-detail").getElementsByTagName("img")[0];
         myimg.alt = this.name;
         myimg.src = this.image;
@@ -70,18 +70,18 @@ function addDisplayInfoBoxListener(ramenobj)
         document.getElementById("comment-display").textContent = "" + this.comment;
         //debugger;
     }.bind(ramenobj));
-    console.log("successfully added the display info box listener!");
+    //console.log("successfully added the display info box listener!");
 }
 
 document.addEventListener("DOMContentLoaded", function(){
     //first load all of the ramens into the dom
     fetch("http://localhost:3000/ramens").then((response) => response.json()).
     then(function(response){
-        console.log("response = " + response);
+        //console.log("response = " + response);
         let myramensarr = response;
         for (let n = 0; n < myramensarr.length; n++)
         {
-            console.log("myramensarr[" + n + "] = " + myramensarr[n]);
+            //console.log("myramensarr[" + n + "] = " + myramensarr[n]);
             //comment, id, image, name, rating, restaurant
             //console.log("myramensarr[" + n + "].comment = " + myramensarr[n].comment);
             //console.log("myramensarr[" + n + "].id = " + myramensarr[n].id);
@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", function(){
         //hook up the image buttons here...
         for (let n = 0; n < myramensarr.length; n++)
         {
-            console.log("myramensarr[" + n + "] = " + myramensarr[n]);
+            //console.log("myramensarr[" + n + "] = " + myramensarr[n]);
             addDisplayInfoBoxListener(myramensarr[n]);
         }//end of n for loop
 
@@ -139,8 +139,8 @@ document.addEventListener("DOMContentLoaded", function(){
         document.body.insertBefore(mymodifybtnsdiv, myupdatefrm);
 
         document.getElementById("editbtn").addEventListener("click", function(event){
-            console.log("edit button was clicked!");
-            console.log("mydisplayid = " + mydisplayid);
+            //console.log("edit button was clicked!");
+            //console.log("mydisplayid = " + mydisplayid);
             let myramenobj = getRamenObjectForDisplayId(mydisplayid, myramensarr);
             let myoupdatefrm = document.getElementById("edit-ramen");
             
@@ -149,36 +149,100 @@ document.addEventListener("DOMContentLoaded", function(){
             myoupdatefrm.style.display = "block";
             myoupdatefrm.getElementsByTagName("input")[0].value = myramenobj.rating;
             myoupdatefrm.getElementsByTagName("textarea")[0].value = myramenobj.comment;
-            console.log("successfully loaded in the values into the edit form!");
+            //console.log("successfully loaded in the values into the edit form!");
             //debugger;
         });
-        console.log("successfully hooked up the edit button!");
+        //console.log("successfully hooked up the edit button!");
         
         document.getElementById("delbtn").addEventListener("click", function(event){
-            console.log("delete button was clicked!");
-            console.log("mydisplayid = " + mydisplayid);
+            //console.log("delete button was clicked!");
+            //console.log("mydisplayid = " + mydisplayid);
             let myramenobj = getRamenObjectForDisplayId(mydisplayid, myramensarr);
-            console.error("NOT DONE YET 7-8-2023 6 PM!");
-            debugger;
+            let myconfigobj = {
+                method: "DELETE",
+                headers: {
+                    "Content-Type" : "application/json",
+                    "Accept" : "application/json"
+                }
+            };
+            fetch("http://localhost:3000/ramens/" + myramenobj.id, myconfigobj).
+            then((oresponse) => oresponse.json()).
+            then(function(oresponse){
+                //console.log("oresponse = " + oresponse);
+                //console.log("OLD mydisplayid = " + mydisplayid);
+                //reset the dom to original contents
+                //remove it from the DOM
+                //remove it from the array
+                let oldidfnd = false;
+                for (let k = 0; k < myramensarr.length; k++)
+                {
+                    if (myramensarr[k].id === mydisplayid)
+                    {
+                        let mynwarr = new Array();
+                        for (let c = 0; c < myramensarr.length; c++)
+                        {
+                            if (c == k);
+                            else mynwarr.push(myramensarr[c]);
+                        }
+                        oldidfnd = true;
+                        myramensarr = mynwarr;
+                        break;
+                    }
+                    //else;//do nothing
+                }
+                //console.log("oldidfnd = " + oldidfnd);
+
+                if (oldidfnd);
+                else throw "the old ID should have been on the array still!";
+                //remove from DOM now
+                document.getElementById(mydisplayid).remove();
+
+                //reset DOM contents to originals
+                let myimg = document.getElementById("ramen-detail").getElementsByTagName("img")[0];
+                myimg.alt = "Insert Name Here";
+                myimg.src = "./assets/image-placeholder.jpg";
+                let myrestname = document.getElementById("ramen-detail").getElementsByTagName("h3")[0];
+                let myitemname = document.getElementById("ramen-detail").getElementsByTagName("h2")[0];
+                myrestname.textContent = "Insert Restaurant Here";
+                myitemname.textContent = "Insert Name Here";
+                document.getElementById("comment-display").textContent = "Insert comment here";
+                document.getElementById("rating-display").textContent = "Insert rating here";
+                mydisplayid = -1;
+                //console.log("NEW mydisplayid = " + mydisplayid);
+                //console.log("Successfully removed the ramen!");
+                
+                if (myramensarr.length > 0)
+                {
+                    document.getElementById(myramensarr[0].id).click();
+                    //console.log("Displayed another after deletion successfully!");
+                }
+                //else;//do nothing
+                
+                //debugger;
+            }).catch(function(err){
+                console.error("there was an error updating the ratings and the comments!");
+                console.error(err);
+            });
+            //debugger;
         });
-        console.log("successfully hooked up the delete button!");
+        //console.log("successfully hooked up the delete button!");
 
         let myoupdatefrm = document.getElementById("edit-ramen");
         myoupdatefrm.addEventListener("submit", function(event){
             event.preventDefault();
-            console.log("event.target = " + event.target);
-            console.log("event.target[0].value = " + event.target[0].value);//rating
-            console.log("event.target[1].value = " + event.target[1].value);//comment
-            console.log("mydisplayid = " + mydisplayid);
+            //console.log("event.target = " + event.target);
+            //console.log("event.target[0].value = " + event.target[0].value);//rating
+            //console.log("event.target[1].value = " + event.target[1].value);//comment
+            //console.log("mydisplayid = " + mydisplayid);
             let myramenobj = getRamenObjectForDisplayId(mydisplayid, myramensarr);
             
             //comment, id, image, name, rating, restaurant
-            console.log("myramenobj.comment = " + myramenobj.comment);
-            console.log("myramenobj.id = " + myramenobj.id);
-            console.log("myramenobj.image = " + myramenobj.image);
-            console.log("myramenobj.name = " + myramenobj.name);
-            console.log("myramenobj.rating = " + myramenobj.rating);
-            console.log("myramenobj.restaurant = " + myramenobj.restaurant);
+            //console.log("myramenobj.comment = " + myramenobj.comment);
+            //console.log("myramenobj.id = " + myramenobj.id);
+            //console.log("myramenobj.image = " + myramenobj.image);
+            //console.log("myramenobj.name = " + myramenobj.name);
+            //console.log("myramenobj.rating = " + myramenobj.rating);
+            //console.log("myramenobj.restaurant = " + myramenobj.restaurant);
             
             let mytmprmobj = {
                 comment: "" + event.target[1].value,
@@ -199,16 +263,16 @@ document.addEventListener("DOMContentLoaded", function(){
             fetch("http://localhost:3000/ramens/" + myramenobj.id, myconfigobj).
             then((oresponse) => oresponse.json()).
             then(function(oresponse){
-                console.log("oresponse = " + oresponse);
+                //console.log("oresponse = " + oresponse);
                 
                 //update the rating and comment on the DOM and hide the form
                 let mynwramenobj = oresponse;
-                console.log("mynwramenobj.comment = " + mynwramenobj.comment);
-                console.log("mynwramenobj.id = " + mynwramenobj.id);
-                console.log("mynwramenobj.image = " + mynwramenobj.image);
-                console.log("mynwramenobj.name = " + mynwramenobj.name);
-                console.log("mynwramenobj.rating = " + mynwramenobj.rating);
-                console.log("mynwramenobj.restaurant = " + mynwramenobj.restaurant);
+                //console.log("mynwramenobj.comment = " + mynwramenobj.comment);
+                //console.log("mynwramenobj.id = " + mynwramenobj.id);
+                //console.log("mynwramenobj.image = " + mynwramenobj.image);
+                //console.log("mynwramenobj.name = " + mynwramenobj.name);
+                //console.log("mynwramenobj.rating = " + mynwramenobj.rating);
+                //console.log("mynwramenobj.restaurant = " + mynwramenobj.restaurant);
                 
                 myramenobj.rating = mynwramenobj.rating;
                 myramenobj.comment = mynwramenobj.comment;
@@ -217,15 +281,15 @@ document.addEventListener("DOMContentLoaded", function(){
                 myoupdatefrm.getElementsByTagName("input")[0].value = "";
                 myoupdatefrm.getElementsByTagName("textarea")[0].value = "";
                 myoupdatefrm.style.display = "none";
-                console.log("sucessfully updated the ramen!");
-                debugger;
+                //console.log("sucessfully updated the ramen!");
+                //debugger;
             }).catch(function(err){
                 console.error("there was an error updating the ratings and the comments!");
                 console.error(err);
             });
-            debugger;
+            //debugger;
         });
-        console.log("successfully hooked up the update form button!");
+        //console.log("successfully hooked up the update form button!");
 
 
         //image:
@@ -237,12 +301,12 @@ document.addEventListener("DOMContentLoaded", function(){
         //
         nwramenform.addEventListener("submit", function(event){
             event.preventDefault();
-            console.log("event.target = " + event.target);
-            console.log("event.target[0].value = " + event.target[0].value);//name
-            console.log("event.target[1].value = " + event.target[1].value);//restaurant
-            console.log("event.target[2].value = " + event.target[2].value);//image
-            console.log("event.target[3].value = " + event.target[3].value);//rating
-            console.log("event.target[4].value = " + event.target[4].value);//comment
+            //console.log("event.target = " + event.target);
+            //console.log("event.target[0].value = " + event.target[0].value);//name
+            //console.log("event.target[1].value = " + event.target[1].value);//restaurant
+            //console.log("event.target[2].value = " + event.target[2].value);//image
+            //console.log("event.target[3].value = " + event.target[3].value);//rating
+            //console.log("event.target[4].value = " + event.target[4].value);//comment
             let mynwramenobj = {
                 name: ("" + event.target[0].value),
                 restaurant: ("" + event.target[1].value),
@@ -261,9 +325,9 @@ document.addEventListener("DOMContentLoaded", function(){
             };
             fetch("http://localhost:3000/ramens", myconfigobj).then((oresponse) => oresponse.json()).
             then(function(oresponse){
-                console.log("oresponse = " + oresponse);
+                //console.log("oresponse = " + oresponse);
                 let myresnwramenobj = oresponse;
-                console.log("myresnwramenobj.id = " + myresnwramenobj.id);
+                //console.log("myresnwramenobj.id = " + myresnwramenobj.id);
                 document.getElementById("ramen-menu").appendChild(
                     getNewRamenDOMElements(myresnwramenobj));
                 addDisplayInfoBoxListener(myresnwramenobj);
@@ -272,22 +336,22 @@ document.addEventListener("DOMContentLoaded", function(){
                 let myinputs = nwramenform.getElementsByTagName("input");
                 for (let n = 0; n < myinputs.length; n++)
                 {
-                    console.log("myinputs[" + n + "].type = " + myinputs[n].type);
+                    //console.log("myinputs[" + n + "].type = " + myinputs[n].type);
                     if (myinputs[n].type === "submit") continue;
                     else myinputs[n].value = "";
                 }
                 let mycmtonfrm = nwramenform.getElementsByTagName("textarea")[0];
                 mycmtonfrm.value = "";
-                console.log("successfully added the new ramen menu item!");
-                debugger;
+                //console.log("successfully added the new ramen menu item!");
+                //debugger;
             }).catch(function(err){
                 console.error("there was an error adding the new menu item!");
                 console.error(err);
             });
-            debugger;
+            //debugger;
         });
-        console.log("set up the new ramen form!");
-        debugger;
+        //console.log("set up the new ramen form!");
+        //debugger;
     }).catch(function(err){
         console.error("there was an error geting all of the ramens!");
         console.error(err);
