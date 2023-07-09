@@ -196,8 +196,33 @@ document.addEventListener("DOMContentLoaded", function(){
                 },
                 body: JSON.stringify(mytmprmobj)
             };
-            //
-            console.error("NOT DONE YET 7-8-2023 6 PM!");
+            fetch("http://localhost:3000/ramens/" + myramenobj.id, myconfigobj).
+            then((oresponse) => oresponse.json()).
+            then(function(oresponse){
+                console.log("oresponse = " + oresponse);
+                
+                //update the rating and comment on the DOM and hide the form
+                let mynwramenobj = oresponse;
+                console.log("mynwramenobj.comment = " + mynwramenobj.comment);
+                console.log("mynwramenobj.id = " + mynwramenobj.id);
+                console.log("mynwramenobj.image = " + mynwramenobj.image);
+                console.log("mynwramenobj.name = " + mynwramenobj.name);
+                console.log("mynwramenobj.rating = " + mynwramenobj.rating);
+                console.log("mynwramenobj.restaurant = " + mynwramenobj.restaurant);
+                
+                myramenobj.rating = mynwramenobj.rating;
+                myramenobj.comment = mynwramenobj.comment;
+                document.getElementById("comment-display").textContent = mynwramenobj.comment;
+                document.getElementById("rating-display").textContent = "" + mynwramenobj.rating;
+                myoupdatefrm.getElementsByTagName("input")[0].value = "";
+                myoupdatefrm.getElementsByTagName("textarea")[0].value = "";
+                myoupdatefrm.style.display = "none";
+                console.log("sucessfully updated the ramen!");
+                debugger;
+            }).catch(function(err){
+                console.error("there was an error updating the ratings and the comments!");
+                console.error(err);
+            });
             debugger;
         });
         console.log("successfully hooked up the update form button!");
